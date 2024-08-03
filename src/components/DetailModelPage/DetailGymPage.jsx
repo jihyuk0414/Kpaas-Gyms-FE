@@ -7,11 +7,14 @@ function DetailGymPage({ location, onClose }) {
   useEffect(() => {
     const fetchGymswithLocation = async () => {
         try {
-            const response = await axios.get('/post/gyms/all', {
-              params: {
-                location: location
+            let response ;
+            if (location === "전체") {
+                response = await axios.get('/post/gyms/all');
+              } else {
+                response = await axios.get('/post/gyms/all', {
+                  params: { location: location }
+                });
               }
-            });
             console.log(response.data);
             setGymswithLocation(response.data);
           } catch (error) {

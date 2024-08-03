@@ -1,4 +1,5 @@
 export const LocationList = [
+    "전체",
     "서울",
     "부산",
     "대구",
