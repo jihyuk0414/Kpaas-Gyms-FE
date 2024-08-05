@@ -6,9 +6,9 @@ const KakaoMap = ({gym}) => {
   const mapContainer = useRef(null); 
   //맵의 전달을 위해서 만들었슴니다
   const mapRef = useRef(null); 
-  //맵 자체를 저장합니다.
+  //맵 자체를 저장! 
   const infowindowRef = useRef(null); 
-  //마커 + 특정 위치 정보 저장을 위해 만들었습니다.
+  //마커 + 특정 위치 정보 저장!
 
   useEffect(() => {
     const script = document.createElement('script');
@@ -25,12 +25,12 @@ const KakaoMap = ({gym}) => {
         };
 
         const map = new window.kakao.maps.Map(mapContainer.current, mapOption);
-        mapRef.current = map; // 객체 세팅
+        mapRef.current = map; // 지도 객체 세팅
 
         const infowindow = new window.kakao.maps.InfoWindow({ zIndex: 1 });
         infowindowRef.current = infowindow; // 마커찍을 객체 생성
 
-        // 장소 검색용
+        // 장소 검색
         const ps = new window.kakao.maps.services.Places();
 
         ps.keywordSearch(gym.시설명, placesSearchCB);
@@ -50,7 +50,7 @@ const KakaoMap = ({gym}) => {
     const { kakao } = window;
     if (!kakao || !mapRef.current) return;
 
-    // 마커찎고, 표시.
+    // 마커찍고, 표시.
     const marker = new kakao.maps.Marker({
       map: mapRef.current,
       position: new kakao.maps.LatLng(place.y, place.x),
@@ -65,7 +65,7 @@ const KakaoMap = ({gym}) => {
     });
   };
 
-  // 검색 한 후, 나머지 기능들을 모두 묶어주기. 
+  // 검색 한 후, 나머지 기능들을 모두 진행!!
   const placesSearchCB = (data, status) => {
     const { kakao } = window;
     if (status === kakao.maps.services.Status.OK) {
@@ -76,7 +76,7 @@ const KakaoMap = ({gym}) => {
         bounds.extend(new kakao.maps.LatLng(data[i].y, data[i].x));
       }
 
-      // 그 장소로 맵의 중심을 변경.
+      //검색 결과들로 묶어서 map의 중심을 변경!
       mapRef.current.setBounds(bounds);
     }
   };
