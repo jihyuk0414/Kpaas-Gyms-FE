@@ -3,12 +3,14 @@ import axios from 'axios';
 import DetailGymPage from '../DetailModelPage/DetailGymPage';
 import { LocationList } from '../../constant/LocationList.js';
 import Modal from '../../Modal/Modal.jsx';
+import OneGymMapForm from '../MapComponent/OneGymMapForm.jsx';
 
 function Mainsmallpage() {
   const [gymsData, setGymsData] = useState(null);
-  const [selectedGym, setSelectedGym] = useState(null);
   const [location, setLocation] = useState('');
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [selectedGym, setSelectedGym] = useState();
+  const [openOneMap,setOpenOneMap] = useState(false);
 
   //조그만한 메인창 부분입니다. 
   useEffect(() => {
@@ -26,6 +28,7 @@ function Mainsmallpage() {
   }, []);
 
   const handleGymSelect = (gym) => {
+    setOpenOneMap(true);
     setSelectedGym(gym);
   };
 
@@ -76,7 +79,7 @@ function Mainsmallpage() {
                 <th>시 단위 지역</th>
                 <th>전화번호</th>
                 <th>홈페이지</th>
-                <th>Details</th>
+                <th>지도 보기</th>
               </tr>
             </thead>
             <tbody>
@@ -92,7 +95,7 @@ function Mainsmallpage() {
                     </a>
                   </td>
                   <td>
-                    <button onClick={() => handleGymSelect(gym)}>상세 보기</button>
+                    <button onClick={() => handleGymSelect(gym)}>지도 보기</button>
                   </td>
                 </tr>
               ))}
@@ -100,6 +103,14 @@ function Mainsmallpage() {
           </table>
         </div>
       )}
+
+      {
+        openOneMap  && (
+          <Modal onClose={() => setOpenOneMap(false)}>
+            <OneGymMapForm gym={selectedGym} onClose={setOpenOneMap}/>
+          </Modal>
+        )
+      }
     </div>
   );
 }
