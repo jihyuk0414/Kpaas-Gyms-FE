@@ -43,6 +43,12 @@ const KakaoMap = ({gym}) => {
     };
   }, [gym]);
 
+      //카카오맵 띄우기 버튼! (링크로 이동 주의)
+      function handleButtonClick ()  {
+        const gymName = encodeURIComponent(gym.시설명);
+        const url = `https://map.kakao.com/?eName=${gymName}`;
+        window.open(url, '_blank');
+      };
 
 
   // 지도에 마커를 표시하는 함수
@@ -93,6 +99,19 @@ const KakaoMap = ({gym}) => {
           display: 'block',
         }}
       ></div>
+
+      <button
+        onClick={() => handleButtonClick()}
+        style={{
+          display: 'block',
+          margin: '20px auto',
+          padding: '10px 20px',
+          fontSize: '16px',
+          cursor: 'pointer',
+        }}
+      >
+        길 찾기
+      </button>
     </div>
   );
 };
