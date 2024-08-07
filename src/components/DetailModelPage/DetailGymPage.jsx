@@ -11,9 +11,9 @@ function DetailGymPage({ location, onClose }) {
       try {
         let response;
         if (location === "전체") {
-          response = await axios.get('/post/gyms/all');
+          response = await axios.get('http://default-api-gateway-05ed6-25524816-d29a0f7fe317.kr.lb.naverncp.com:8761/post/gyms/all');
         } else {
-          response = await axios.get('/post/gyms/all', {
+          response = await axios.get('http://default-api-gateway-05ed6-25524816-d29a0f7fe317.kr.lb.naverncp.com:8761/post/gyms/all', {
             params: { location: location }
           });
         }

@@ -4,13 +4,8 @@ import react from '@vitejs/plugin-react'
 // https://vitejs.dev/config/
 export default defineConfig({
   server: {
-    proxy: {
-      '/post/gyms': {
-        target: 'http://localhost:8888',
-        changeOrigin: true,
-        secure: false,
-      },
-    },
+    port: 3000, // 기본 포트를 3000으로 변경
   },
   plugins: [react()],
 })
+

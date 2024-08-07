@@ -16,7 +16,7 @@ function Mainsmallpage() {
   useEffect(() => {
     const fetchGymsData = async () => {
       try {
-        const response = await axios.get('/post/gyms/main');
+        const response = await axios.get('http://default-api-gateway-05ed6-25524816-d29a0f7fe317.kr.lb.naverncp.com:8761/post/gyms/main');
         console.log(response.data);
         setGymsData(response.data);
       } catch (error) {
